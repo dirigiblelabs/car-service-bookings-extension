@@ -1,7 +1,7 @@
 # Sample V3 - Car Service Bookings Extension
 
 [![Eclipse License](http://img.shields.io/badge/license-Eclipse-brightgreen.svg)](LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/dirigiblelabs/car-service-bookings-extension.svg)](https://github.com/dirigiblelabs/car-service-bookings-extension/graphs/contributors)
+[![GitHub contributors](https://img.shields.io/github/contributors/dirigiblelabs/sample-v3-car-service-bookings-extension.svg)](https://github.com/dirigiblelabs/sample-v3-car-service-bookings-extension/graphs/contributors)
 
 
 ## Overview
