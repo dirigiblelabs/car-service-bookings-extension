@@ -22,7 +22,7 @@ angular.module('view')
 	$scope.reload = function() {
 		var brand = $cookies.get('Car-Service-Brand');
 		var model = $cookies.get('Car-Service-Model');
-		var url = 'http://localhost:8080/services/v3/web/car-service-bookings-extension/extensions/views/fileName/index.html?q=' + brand;
+		var url = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + brand;
 		if (model) {
 			url += '+' + model;
 		}
