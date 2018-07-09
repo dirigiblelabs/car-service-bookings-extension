@@ -31,6 +31,7 @@ angular.module('view')
 
 	$messageHub.onBrandSelected(function(e) {
 		$cookies.put('Car-Service-Brand', e.data.name);
+		$cookies.remove('Car-Service-Model');
 		$scope.reload();
 	});
 
