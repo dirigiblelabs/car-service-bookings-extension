@@ -17,7 +17,10 @@ angular.module('view')
 		}
 	};
 }])
-.controller('ViewController', ['$scope', '$cookies', '$messageHub', function ($scope, $cookies, $messageHub) {
+.controller('ViewController', ['$scope', '$http', '$cookies', '$messageHub', function ($scope, $http, $cookies, $messageHub) {
+
+	var brandsApi = '/services/v3/js/car-service-bookings/api/Garage/Brands.js';
+	var modelsApi = '/services/v3/js/car-service-bookings/api/Garage/Models.js';
 
 	$scope.reload = function() {
 		var brand = $cookies.get('Car-Service-Brand');
@@ -30,13 +33,35 @@ angular.module('view')
 	};
 
 	$messageHub.onBrandSelected(function(e) {
-		$cookies.put('Car-Service-Brand', e.data.name);
-		$cookies.remove('Car-Service-Model');
-		$scope.reload();
+		if (e.data.name) {
+			setBrand(e.data.name)
+		} else {
+			$http.get(brandsApi + '/' + e.data.id)
+			.success(function(entity) {
+				setBrand(entity.Name);
+			});
+		}
 	});
 
 	$messageHub.onModelSelected(function(e) {
-		$cookies.put('Car-Service-Model', e.data.name);
-		$scope.reload();
+		if (e.data.name) {
+			setModel(e.data.name)
+		} else {
+			$http.get(modelsApi + '/' + e.data.id)
+			.success(function(entity) {
+				setModel(entity.Name);
+			});
+		}
 	});
+
+	function setBrand(brand) {
+		$cookies.put('Car-Service-Brand', brand);
+		$cookies.remove('Car-Service-Model');
+		$scope.reload();
+	}
+
+	function setModel(model) {
+		$cookies.put('Car-Service-Model', model);
+		$scope.reload();
+	}
 }]);
